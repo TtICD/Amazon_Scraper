@@ -32,3 +32,11 @@ jobs:
 
     - name: Run Scraper
       run: python3 daily_scraper.py
+
+    - name: Commit and Push CSV Changes
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git add data/cumulative_data.csv  # Add your updated CSV file
+        git commit -m "Update CSV with new scraped data"
+        git push origin main
