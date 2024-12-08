@@ -26,7 +26,7 @@ jobs:
         sudo apt-get install -y wget curl
         wget https://storage.googleapis.com/chrome-for-testing-public/131.0.6778.87/linux64/chrome-linux64.zip
         unzip chrome-linux64.zip
-        sudo mv chrome-linux64.zip /usr/local/bin/
+        sudo mv chrome-linux64 /usr/local/bin/
 
 
     - name: Install ChromeDriver
@@ -34,8 +34,8 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y wget curl 
         wget -q "https://storage.googleapis.com/chrome-for-testing-public/131.0.6778.87/linux64/chromedriver-linux64.zip"
-        unzip chromedriver_linux64.zip
-        sudo mv chromedriver /usr/local/bin/
+        unzip chromedriver-linux64.zip
+        sudo mv chromedriver-linux64 /usr/local/bin/
 
 
     - name: Run Scraper
