@@ -24,9 +24,9 @@ jobs:
       run: |       
         sudo apt-get update
         sudo apt-get install -y wget curl
-        wget https://storage.googleapis.com/chrome-for-testing-public/131.0.6778.87/linux64/chrome-linux64.zip
+        wget https://github.com/TtICD/Amazon_Scraper/raw/main/resourcesstorage.googleapis.com/chrome-for-testing-public/131.0.6778.87/linux64/chrome-linux64.zip
         sudo dpkg -i google-chrome-stable_131.0.6778.87_amd64.deb
-        sudo apt-get install --allow-downgrades -f 
+        sudo apt-get install -f -y
 
 
     - name: Install ChromeDriver
