@@ -44,9 +44,11 @@ jobs:
       run: python3 daily_scraper.py
 
     - name: Commit and Push CSV Changes
-      run: |
+      run: |   
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
+        git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/TtICD/Amazon_Scraper.git
+
         git add data/cumulative_data.csv  # Add your updated CSV file
         git commit -m "Update CSV with new scraped data"
         git push origin main
