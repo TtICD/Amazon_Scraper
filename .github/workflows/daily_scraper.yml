@@ -21,27 +21,18 @@ jobs:
         python3 -m pip install pandas==2.0.3
 
     - name: Install Chrome 
-      run: |      
+      run: |       
         sudo apt-get update
         sudo apt-get install -y wget curl
-        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        sudo dpkg -i google-chrome-stable_current_amd64.deb
-        sudo apt-get install -f  
+        wget https://dl.google.com/linux/direct/google-chrome-stable_114.0.5735.90-1_amd64.deb
+        sudo dpkg -i google-chrome-stable_114.0.5735.90-1_amd64.deb
+        sudo apt-get install --allow-downgrades -f 
 
 
     - name: Install ChromeDriver
-      run: |       
-        CHROME_VERSION=$(google-chrome --version | grep -oE '[0-9.]+' | head -1)
-        DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
-        
-        echo "Using ChromeDriver version: $DRIVER_VERSION"
-        
-        # Download and install ChromeDriver
-        wget -q "https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip"
-        unzip chromedriver_linux64.zip
-        sudo mv chromedriver /usr/local/bin/
-        
-        wget -q "https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip"
+      run: |     
+        DRIVER_VERSION="114.0.5735.90"
+        wget -q "https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip"
         unzip chromedriver_linux64.zip
         sudo mv chromedriver /usr/local/bin/
 
