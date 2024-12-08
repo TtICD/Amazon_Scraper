@@ -22,13 +22,23 @@ jobs:
       run: |
         sudo apt-get install -y google-chrome-stable
 
+    - name: Debug Chrome Version
+      run: |
+        google-chrome --version
+
     - name: Install ChromeDriver
       run: |
-        CHROME_VERSION=$(google-chrome --version | grep -oE '[0-9.]+')
+        CHROME_VERSION=$(google-chrome --version | grep -oE '[0-9.]+' | head -1)
+        echo "Detected Chrome version: $CHROME_VERSION"
+        
         DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
+        echo "Detected ChromeDriver version: $DRIVER_VERSION"
+
         wget -q "https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip"
         unzip chromedriver_linux64.zip
         sudo mv chromedriver /usr/local/bin/
+        chmod +x /usr/local/bin/chromedriver
+
 
     - name: Run Scraper
       run: python3 daily_scraper.py
