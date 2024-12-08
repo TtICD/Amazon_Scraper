@@ -16,7 +16,9 @@ jobs:
     - name: Install Python and Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y python=3.8.10 python3-pip
+        sudo apt-get install -y python3 python3-pip
+        pip uninstall numpy
+        python3 -m pip install numpy==1.24.4
         python3 -m pip install selenium==4.27.1 
         python3 -m pip install pandas==2.0.3
 
