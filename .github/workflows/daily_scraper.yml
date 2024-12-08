@@ -21,7 +21,10 @@ jobs:
 
     - name: Install Chrome
       run: |
-        sudo apt-get install -y google-chrome-stable
+        sudo apt-get update
+        wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_114.0.5735.90-1_amd64.deb
+        sudo apt-get install -y ./google-chrome-stable_114.0.5735.90-1_amd64.deb
+
 
     - name: Debug Chrome Version
       run: |
@@ -29,16 +32,10 @@ jobs:
 
     - name: Install ChromeDriver
       run: |
-        CHROME_VERSION=$(google-chrome --version | grep -oE '[0-9.]+' | head -1)
-        echo "Detected Chrome version: $CHROME_VERSION"
-        
-        DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_VERSION")
-        echo "Detected ChromeDriver version: $DRIVER_VERSION"
-
-        wget -q "https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip"
-        unzip chromedriver_linux64.zip
-        sudo mv chromedriver /usr/local/bin/
-        chmod +x /usr/local/bin/chromedriver
+          DRIVER_VERSION=114.0.5735.90
+          wget -q "https://chromedriver.storage.googleapis.com/$DRIVER_VERSION/chromedriver_linux64.zip"
+          unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/
 
 
     - name: Run Scraper
