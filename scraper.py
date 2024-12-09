@@ -100,7 +100,7 @@ class AmazonScraper():
         driver = self.scraper_config.driver
         driver.get(url=url)
 
-        time.sleep(20)
+        time.sleep(30)
         
         product = driver.find_element(By.ID, 'centerCol')
         name = product.find_element(By.ID, 'productTitle').text
